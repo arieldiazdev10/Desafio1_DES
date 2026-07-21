@@ -18,8 +18,7 @@ namespace Desafio1_DES.Models
         [Required]
         public decimal Salario { get; set; }
 
-        [StringLength(250)]
-        public string Descripcion { get; set; }
+        public string? Descripcion { get; set; }
 
         //Propiedad de navegacion
         public ICollection<Departamento> Departamentos { get; set; }
