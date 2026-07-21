@@ -1,7 +1,15 @@
+using Desafio1_DES.Models;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Add DbContext
+builder.Services.AddDbContext<DepartamentosDBContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DepartamentosCN")));
 
 var app = builder.Build();
 
