@@ -9,7 +9,7 @@ builder.Services.AddControllersWithViews();
 
 //Add DbContext
 builder.Services.AddDbContext<DepartamentosDBContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("DepartamentosCN")));
+options.UseSqlServer(builder.Configuration.GetConnectionString("EmpresaCN")));
 
 var app = builder.Build();
 
