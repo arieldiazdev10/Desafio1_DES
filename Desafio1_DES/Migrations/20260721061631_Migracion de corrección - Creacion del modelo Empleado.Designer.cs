@@ -4,6 +4,7 @@ using Desafio1_DES.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Desafio1_DES.Migrations
 {
     [DbContext(typeof(DepartamentosDBContext))]
-    partial class DepartamentosDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260721061631_Migracion de corrección - Creacion del modelo Empleado")]
+    partial class MigraciondecorrecciónCreaciondelmodeloEmpleado
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,12 +36,17 @@ namespace Desafio1_DES.Migrations
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EmpleadoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("NombreDepartamento")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("EmpleadoId");
 
                     b.ToTable("Departamentos");
                 });
@@ -50,9 +58,6 @@ namespace Desafio1_DES.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("DepartamentoId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
@@ -73,25 +78,23 @@ namespace Desafio1_DES.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("DepartamentoId");
-
                     b.ToTable("Empleados");
-                });
-
-            modelBuilder.Entity("Desafio1_DES.Models.Empleado", b =>
-                {
-                    b.HasOne("Desafio1_DES.Models.Departamento", "Departamento")
-                        .WithMany("Empleados")
-                        .HasForeignKey("DepartamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Departamento");
                 });
 
             modelBuilder.Entity("Desafio1_DES.Models.Departamento", b =>
                 {
-                    b.Navigation("Empleados");
+                    b.HasOne("Desafio1_DES.Models.Empleado", "Empleado")
+                        .WithMany("Departamentos")
+                        .HasForeignKey("EmpleadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empleado");
+                });
+
+            modelBuilder.Entity("Desafio1_DES.Models.Empleado", b =>
+                {
+                    b.Navigation("Departamentos");
                 });
 #pragma warning restore 612, 618
         }

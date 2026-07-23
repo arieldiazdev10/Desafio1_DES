@@ -4,6 +4,7 @@ using Desafio1_DES.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Desafio1_DES.Migrations
 {
     [DbContext(typeof(DepartamentosDBContext))]
-    partial class DepartamentosDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260723024912_Migracion de correccion - Llave foranea del modelo empleados")]
+    partial class MigraciondecorreccionLlaveforaneadelmodeloempleados
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
