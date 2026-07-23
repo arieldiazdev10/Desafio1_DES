@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+
 namespace Desafio1_DES.Models
 {
     public class Empleado
@@ -22,6 +24,7 @@ namespace Desafio1_DES.Models
         public int DepartamentoId { get; set; }
 
         //Propiedad de navegación
+        [ValidateNever]
         public Departamento Departamento { get; set; } = null!;
     }
 }
