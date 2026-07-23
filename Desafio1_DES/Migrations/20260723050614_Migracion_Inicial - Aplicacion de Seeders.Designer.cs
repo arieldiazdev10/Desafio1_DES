@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Desafio1_DES.Migrations
 {
     [DbContext(typeof(DepartamentosDBContext))]
-    [Migration("20260723024912_Migracion de correccion - Llave foranea del modelo empleados")]
-    partial class MigraciondecorreccionLlaveforaneadelmodeloempleados
+    [Migration("20260723050614_Migracion_Inicial - Aplicacion de Seeders")]
+    partial class Migracion_InicialAplicaciondeSeeders
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,24 @@ namespace Desafio1_DES.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Departamentos");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Descripcion = "Departemento de recursos humanos, contratación y despido",
+                            NombreDepartamento = "Recursos Humanos"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            NombreDepartamento = "Tecnología"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            NombreDepartamento = "Ventas"
+                        });
                 });
 
             modelBuilder.Entity("Desafio1_DES.Models.Empleado", b =>
@@ -72,6 +90,7 @@ namespace Desafio1_DES.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<decimal>("Salario")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("ID");
@@ -79,6 +98,53 @@ namespace Desafio1_DES.Migrations
                     b.HasIndex("DepartamentoId");
 
                     b.ToTable("Empleados");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            DepartamentoId = 1,
+                            FechaContratacion = new DateTime(2010, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaNacimiento = new DateTime(1985, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NombreEmpleado = "John Doe",
+                            Salario = 50000m
+                        },
+                        new
+                        {
+                            ID = 2,
+                            DepartamentoId = 2,
+                            FechaContratacion = new DateTime(2015, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaNacimiento = new DateTime(1990, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NombreEmpleado = "Jane Smith",
+                            Salario = 70000m
+                        },
+                        new
+                        {
+                            ID = 3,
+                            DepartamentoId = 3,
+                            FechaContratacion = new DateTime(2012, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaNacimiento = new DateTime(1982, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NombreEmpleado = "Mark Johnson",
+                            Salario = 55000m
+                        },
+                        new
+                        {
+                            ID = 4,
+                            DepartamentoId = 1,
+                            FechaContratacion = new DateTime(2005, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaNacimiento = new DateTime(1978, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NombreEmpleado = "Emily Davis",
+                            Salario = 75000m
+                        },
+                        new
+                        {
+                            ID = 5,
+                            DepartamentoId = 2,
+                            FechaContratacion = new DateTime(2020, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaNacimiento = new DateTime(1995, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            NombreEmpleado = "Michael Brown",
+                            Salario = 60000m
+                        });
                 });
 
             modelBuilder.Entity("Desafio1_DES.Models.Empleado", b =>
