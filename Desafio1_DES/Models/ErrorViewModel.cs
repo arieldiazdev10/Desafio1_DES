@@ -7,3 +7,4 @@ namespace Desafio1_DES.Models
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }
+
